@@ -1,10 +1,7 @@
 var canvas =document.getElementById("canvas");
 var ctx=canvas.getContext('2d');
 var searchRadius = canvas.width/2.5;
-    // canvas.width=window.innerWidth;
-    // canvas.height=window.innerHeight;
-//
-//
+
      canvas.width=window.innerWidth;
      canvas.height=window.innerHeight;
 
@@ -16,13 +13,11 @@ var searchRadius = canvas.width/2.5;
      boxesIndex=0;
 
 
-//     var posX;
- //    var posY;
+
 
 ////////////////////////////////////////////////////////////////////////////Class Box
 function Box(x1,y1,bwidth,bheight,color,dx,dy) {
     this.posX=x1;
-    //his.posX=posX;
     this.posY=y1;
 
 
@@ -32,7 +27,6 @@ function Box(x1,y1,bwidth,bheight,color,dx,dy) {
     this.angleX=Math.random()*(360-0);
     this.angleY=Math.random()*(360-0);
 
-    //this.posY=posY;
 
     this.dx=0.1;
     this.dy=0.1;
@@ -70,6 +64,8 @@ Box.prototype.draw=function () {
 
     this.posX+=this.dx * this.gravity.x;
     this.posY+=this.dy * this.gravity.y;
+	
+	
    // this.life++;
 /*
 
@@ -100,6 +96,8 @@ Box.prototype.draw=function () {
    //
    //      delete boxes[this.id];
    //  }*/
+   
+   
     ctx.fillStyle=this.color;
     ctx.fillRect(this.posX,this.posY, this.bw,this.bh);
 };
@@ -127,7 +125,9 @@ line.prototype.draw=function () {
 ///////////////////////////////////////////////////////////////////////////drawing
 for(var i=0; i<boxesNum;i++){
     var ran=Math.floor(Math.random()*(2-0));
+	
     //console.log(ran);
+	
     var b =new Box(Math.random()*canvas.width,
         Math.random()*canvas.height,
         5, 5,colors[ran]);
@@ -150,19 +150,12 @@ setInterval(function () {
             var newposX = boxes[j].posX;
             var newposY = boxes[j].posY;
 
-            //if(Math.sqrt(posX-newposX)<=10&&Math.sqrt(posY-newposY)<=10) {
             if(checkInCircle(posX,posY,newposX,newposY) == true){
                 var l = new line(boxes[i].posX+2.5, boxes[i].posY+2.5,
                     boxes[j].posX+2.5, boxes[j].posY+2.5,
                      "rgba(128, 141, 60,0.3)",true);
 
-                    // if(l.drawing==true){
-                    //     boxes[j].dx+=0.5;
-                    //     boxes[i].posY+=0.5;
-                    //
-                    //     // boxes[j].posX+=0.5;
-                    //     // boxes[j].posY+=0.5;
-                    // }
+          
                 l.draw();
             }
         }
